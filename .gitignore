@@ -1,0 +1,9 @@
+/target
+**/*.rs.bk
+
+# Segredos nunca entram no repositório.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
