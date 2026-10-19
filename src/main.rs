@@ -1,14 +1,12 @@
-//! North: bot oficial. Por enquanto conecta pelo Pulse e registra os eventos;
-//! comandos entram depois.
+//! North: bot oficial. Por enquanto busca o Gateway pelo REST, conecta pelo
+//! Pulse e registra os eventos; comandos entram depois.
 
 use nortcod::Token;
 use nortcod::events::Event;
 use nortcod::gateway::intents;
 use nortcod::gateway::pulse::{Pulse, PulseConfig, Session};
+use nortcod::rest::RestClient;
 use tracing_subscriber::EnvFilter;
-
-/// Base do Gateway enquanto o REST não busca GET /gateway/bot.
-const GATEWAY_URL: &str = "wss://gateway.discord.gg";
 
 #[tokio::main]
 async fn main() {
@@ -24,7 +22,25 @@ async fn main() {
         }
     };
 
-    let session = Session::new(token, intents::GUILDS, GATEWAY_URL);
+    let rest = match RestClient::new(token.clone()) {
+        Ok(rest) => rest,
+        Err(err) => fail("não deu para montar o cliente REST", err),
+    };
+    let gateway = match rest.gateway_bot().await {
+        Ok(gateway) => gateway,
+        Err(err) => fail("GET /gateway/bot falhou (token certo?)", err),
+    };
+    let limit = &gateway.session_start_limit;
+    tracing::info!(shards = gateway.shards, sessoes_restantes = limit.remaining, "gateway encontrado");
+    if limit.remaining == 0 {
+        tracing::error!(reset_ms = limit.reset_after, "limite diário de sessões esgotado");
+        std::process::exit(1);
+    }
+    if gateway.shards > 1 {
+        tracing::warn!(shards = gateway.shards, "Discord sugere sharding; o North ainda roda com 1 shard");
+    }
+
+    let session = Session::new(token, intents::GUILDS, gateway.url);
     let (pulse, handle, mut events) = Pulse::new(session, PulseConfig::default());
     let pulse = tokio::spawn(pulse.run());
 
@@ -56,6 +72,11 @@ async fn main() {
             std::process::exit(1);
         }
     }
+}
+
+fn fail(what: &str, err: nortcod::Error) -> ! {
+    tracing::error!(%err, "{what}");
+    std::process::exit(1);
 }
 
 /// Ctrl+C no terminal ou SIGTERM do systemd.
