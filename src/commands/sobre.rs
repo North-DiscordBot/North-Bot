@@ -5,7 +5,7 @@ pub struct Sobre;
 
 impl Command for Sobre {
     fn definition(&self) -> CommandDefinition {
-        CommandDefinition::new("sobre", "Conta o que é o North")
+        CommandDefinition::new("sobre", "Conta quem é a North")
     }
 
     fn run<'a>(&'a self, ctx: &'a Context) -> BoxFuture<'a, Result<()>> {
@@ -15,7 +15,7 @@ impl Command for Sobre {
 
 fn message() -> String {
     format!(
-        "**North** {}\nFeito em Rust, do zero, com a NortCod (a biblioteca da casa para falar com o Discord).",
+        "**North** {}\nFeita em Rust, do zero, com a NortCod (a biblioteca da casa para falar com o Discord).",
         env!("CARGO_PKG_VERSION")
     )
 }

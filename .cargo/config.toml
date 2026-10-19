@@ -1,0 +1,4 @@
+# A NortCod é um repositório privado: o git do sistema usa as suas
+# credenciais do GitHub (o cliente git embutido do Cargo não usa).
+[net]
+git-fetch-with-cli = true

@@ -1,0 +1,21 @@
+North: additional permission under GNU AGPL version 3, section 7
+
+Copyright (C) 2026 wonrizer and the North contributors
+
+North is free software: you can redistribute it and/or modify it under the
+terms of the GNU Affero General Public License, version 3, as published by
+the Free Software Foundation (see LICENSE).
+
+Additional permission under GNU AGPL version 3 section 7:
+
+If you modify this Program, or any covered work, by linking or combining it
+with NortCod (or a modified version of that library), containing parts
+covered by the terms of a license other than the GNU AGPL, the licensors of
+this Program grant you additional permission to convey the resulting work
+and to make it available to users interacting with it remotely through a
+computer network. Corresponding Source for a non-source form of such a
+combination shall include the source code for the parts of North used, but
+need not include the source code of NortCod.
+
+Contributions to this repository are accepted under the same terms: the GNU
+AGPL version 3 together with this additional permission.

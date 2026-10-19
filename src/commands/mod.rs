@@ -1,4 +1,4 @@
-//! Slash commands do North. Cada comando é um arquivo; `all()` junta todos.
+//! Slash commands da North. Cada comando é um arquivo; `all()` junta todos.
 
 mod ping;
 mod sobre;

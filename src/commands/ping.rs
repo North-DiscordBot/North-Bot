@@ -7,7 +7,7 @@ pub struct Ping;
 
 impl Command for Ping {
     fn definition(&self) -> CommandDefinition {
-        CommandDefinition::new("ping", "Mostra se o North está respondendo e quanto demorou")
+        CommandDefinition::new("ping", "Mostra se a North está respondendo e quanto demorou")
     }
 
     fn run<'a>(&'a self, ctx: &'a Context) -> BoxFuture<'a, Result<()>> {

@@ -631,7 +631,7 @@ dependencies = [
 [[package]]
 name = "nortcod"
 version = "0.1.0"
-source = "git+https://github.com/North-DiscordBot/NortCod.git?rev=7a10a59efbed4a696ab984cf7688d1adcd2966c0#7a10a59efbed4a696ab984cf7688d1adcd2966c0"
+source = "git+https://github.com/North-DiscordBot/NortCod.git?rev=2c58286f36e7eda5e65fb12de3ecafb5e991aa1e#2c58286f36e7eda5e65fb12de3ecafb5e991aa1e"
 dependencies = [
  "fastrand",
  "futures-util",

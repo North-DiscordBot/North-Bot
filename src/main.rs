@@ -26,7 +26,7 @@ async fn main() {
     let token = match Token::from_env("DISCORD_TOKEN") {
         Ok(token) => token,
         Err(err) => {
-            tracing::error!(%err, "defina DISCORD_TOKEN para rodar o North");
+            tracing::error!(%err, "defina DISCORD_TOKEN para rodar a North");
             std::process::exit(2);
         }
     };
@@ -61,7 +61,7 @@ async fn main() {
         std::process::exit(1);
     }
     if gateway.shards > 1 {
-        tracing::warn!(shards = gateway.shards, "Discord sugere sharding; o North ainda roda com 1 shard");
+        tracing::warn!(shards = gateway.shards, "Discord sugere sharding; a North ainda roda com 1 shard");
     }
 
     let session = Session::new(token, intents::GUILDS, gateway.url);
@@ -108,7 +108,7 @@ async fn main() {
     }
 
     match pulse.await {
-        Ok(Ok(())) => tracing::info!("North encerrado"),
+        Ok(Ok(())) => tracing::info!("North encerrada"),
         Ok(Err(err)) => {
             tracing::error!(%err, "Pulse parou");
             std::process::exit(1);
