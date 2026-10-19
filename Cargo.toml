@@ -7,7 +7,7 @@ rust-version = "1.85"
 publish = false
 
 [dependencies]
-nortcod = { git = "https://github.com/North-DiscordBot/NortCod.git", rev = "473794b8d61e82970bfe1c8ca3c2308909705882" }
+nortcod = { git = "https://github.com/North-DiscordBot/NortCod.git", rev = "7a10a59efbed4a696ab984cf7688d1adcd2966c0" }
 tokio = { version = "1.48", features = ["macros", "rt-multi-thread", "net", "time", "sync", "signal"] }
 tracing = "0.1.41"
 tracing-subscriber = { version = "0.3.20", features = ["env-filter"] }
